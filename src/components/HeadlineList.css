@@ -1,0 +1,50 @@
+.headline-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.headline-card {
+    background-color: white;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: black;
+    overflow: hidden;
+}
+
+.headline-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.headline-content {
+    padding: 15px;
+}
+
+.headline-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.headline-source {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.headline-date {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.headline-description {
+    font-size: 14px;
+    color: #333;
+}

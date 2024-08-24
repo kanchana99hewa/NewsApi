@@ -1,25 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import HeadlineList from './components/HeadlineList'; // Import the HeadlineList component
-import HeadlineDetail from './components/HeadlineDetail'; // Import the HeadlineDetail component
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import routing components
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HeadlineList from './components/HeadlineList';
+import HeadlineDetail from './components/HeadlineDetail';
+import axios from 'axios';
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <header className="App-header">
-          <h1>News Headlines</h1>
-        </header>
-        <Routes>
-          {/* Route for the headline list */}
-          <Route path="/" element={<HeadlineList />} />
-          {/* Route for viewing headline details */}
-          <Route path="/headline/:id" element={<HeadlineDetail />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+    const [headlines, setHeadlines] = useState([]);
+
+    useEffect(() => {
+        const fetchHeadlines = async () => {
+            try {
+                const response = await axios.get(
+                    `https://newsapi.org/v2/top-headlines?country=us&apiKey=YOUR_API_KEY`
+                );
+                setHeadlines(response.data.articles);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchHeadlines();
+    }, []);
+
+    return (
+        <Router>
+            <div className="App">
+                <header className="App-header">
+                    <h1>News Headlines</h1>
+                </header>
+                <Routes>
+                    <Route path="/" element={<HeadlineList headlines={headlines} />} />
+                    <Route path="/headline/:id" element={<HeadlineDetail headlines={headlines} />} />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
