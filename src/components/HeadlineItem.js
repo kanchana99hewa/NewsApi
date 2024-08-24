@@ -1,19 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 
 function HeadlineItem({ headline }) {
-  return (
-    <div className="headline-item">
-      <img src={headline.urlToImage} alt="thumbnail" />
-      <div className="headline-info">
-        <h2>{headline.title}</h2>
-        <p>{headline.source.name} - {headline.author}</p>
-        <p>{new Date(headline.publishedAt).toDateString()}</p>
-        <p>{headline.description}</p>
-        <Link to={`/headline/${headline.id}`}>Read more</Link>
-      </div>
-    </div>
-  );
+    return (
+        <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={headline.urlToImage} alt="thumbnail" />
+            <Card.Body>
+                <Card.Title>{headline.title}</Card.Title>
+                <Card.Text>
+                    {headline.source.name} - {headline.author}<br />
+                    {new Date(headline.publishedAt).toDateString()}<br />
+                    {headline.description}
+                </Card.Text>
+                <Link to={`/headline/${headline.id}`}>Read more</Link>
+            </Card.Body>
+        </Card>
+    );
 }
 
 export default HeadlineItem;
