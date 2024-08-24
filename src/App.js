@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import HeadlineList from './components/HeadlineList'; // Import the HeadlineList component
+import HeadlineDetail from './components/HeadlineDetail'; // Import the HeadlineDetail component
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import routing components
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <h1>News Headlines</h1>
+        </header>
+        <Routes>
+          {/* Route for the headline list */}
+          <Route path="/" element={<HeadlineList />} />
+          {/* Route for viewing headline details */}
+          <Route path="/headline/:id" element={<HeadlineDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
