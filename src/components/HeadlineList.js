@@ -10,7 +10,7 @@ function HeadlineList() {
         const fetchHeadlines = async () => {
             try {
                 const response = await axios.get(
-                    `https://newsapi.org/v2/top-headlines?country=us&apiKey=e1d71f292111457db63b8cde736c269c`
+                    `https://newsapi.org/v2/everything?q=tesla&from=2024-07-24&sortBy=publishedAt&apiKey=e1d71f292111457db63b8cde736c269c`
                 );
                 setHeadlines(response.data.articles);
             } catch (error) {
